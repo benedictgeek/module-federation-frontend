@@ -3,6 +3,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
@@ -23,6 +24,14 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html",
+    }),
+
+    new ModuleFederationPlugin({
+      name: "initApp",
+      filename: "remoteEntry.js",
+      remotes: {
+        childApp: "childApp@http://localhost:3002/remoteEntry.js",
+      },
     }),
 
     // Add your plugins here
