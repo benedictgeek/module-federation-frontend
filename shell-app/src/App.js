@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <h1>SHELL APP</h1>
         <Suspense>
-          <ChildApp />
+          {/* <ChildApp /> */}
         </Suspense>
       </header>
     </div>
